@@ -1,23 +1,18 @@
-# TM1637_Timer_RPM-stepper_motor
-Timer with TM1637 4 digits display, KY-040 rotary encoder and RPM output to stepper motor driver A4988.
+# TM1637_RPM-stepper_motor
+TM1637 4 digits display, KY-040 rotary encoder and RPM output to stepper motor driver A4988.
 
-It’s a laboratory equipment used to mix, blend, or agitate substances in a tube or vial by shaking them.
+It’s a nema stepper controller.
 
 Functions:
-
--timer, with step 1 minute, max 12h.
-
+-stop start with encoder button
 -motor speed control - rpm (quite accurate), 
-
 -direction control, cw and ccw
-
 -acceleration/deceleration 
-
--angle adjust by replacing Crankdeg part: 10deg, 15deg, and 20deg
-
--save config: default time and rpm to mcu memory
+-save config: default rpm to mcu memory
 
 
+# Original code with timer for shaker
+https://github.com/polihedron/TM1637_Timer_RPM-stepper_motor
 link how it's working:
 https://www.youtube.com/watch?v=TyF6TsbwEOg
 
