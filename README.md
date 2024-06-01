@@ -1,5 +1,5 @@
 # TM1637_RPM-stepper_motor
-@polihedron was so kind to write the code without timer! Only code on the internet that I could fine for stepper motors and TM1637, so convenant.
+@polihedron  was so kind to write the code without timer! Only code on the internet that I could fine for stepper motors and TM1637, so convenant.
 https://github.com/polihedron/TM1637_Timer_RPM-stepper_motor/issues/1
 
 TM1637 4 digits display, KY-040 rotary encoder and RPM output to stepper motor driver A4988.
