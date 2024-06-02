@@ -1,6 +1,6 @@
 # TM1637_RPM-stepper_motor
 
-@polihedron  was so kind to write the code without timer! Only code on the internet that I could fine for stepper motors and TM1637, so convenant.
+@polihedron  was so kind to write the code without timer! Only code on the internet that I could fine for stepper motors and TM1637.
 
 https://github.com/polihedron/TM1637_Timer_RPM-stepper_motor/issues/1
 
@@ -24,10 +24,6 @@ Functions:
 
 https://github.com/polihedron/TM1637_Timer_RPM-stepper_motor
 
-link how it's working:
+link how it's working: https://www.youtube.com/watch?v=TyF6TsbwEOg
 
-https://www.youtube.com/watch?v=TyF6TsbwEOg
-
-3D print files and bom:
-
-https://www.thingiverse.com/thing:4655574
+3D print files and bom: https://www.thingiverse.com/thing:4655574
