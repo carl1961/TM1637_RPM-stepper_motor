@@ -1,8 +1,13 @@
 #include <TM1637Display.h>                                           // https://github.com/avishorp/TM1637
 #include <ClickEncoder.h>                                            // https://github.com/0xPIT/encoder/tree/arduino
 #include <TimerOne.h>                                                // https://playground.arduino.cc/Code/Timer1/
+#include <EEPROM.h>
 
-#define DEBUG
+
+#define config_version "v1"
+#define config_start 16
+
+//#define DEBUG
 
 #ifdef DEBUG
   #define DEBUG_PRINT(x)    Serial.print(x)
@@ -41,6 +46,49 @@ void timerIsr() {                                                     // encoder
   
 }
 
+typedef struct {                                                       // settings to save in eeprom
+    char version[3];
+    int RPM;
+    
+} settings;
+
+
+settings cfg = {
+     config_version,
+     20                                                                // int RPM
+};
+
+
+
+bool loadConfig() {                                                   
+
+  if (EEPROM.read( config_start + 0 ) == config_version[0] &&
+      EEPROM.read( config_start + 1 ) == config_version[1] ){
+
+    for (int i = 0; i < sizeof( cfg ); i++ ){
+      *(( char* )&cfg + i) = EEPROM.read( config_start + i );
+    }
+    DEBUG_PRINTLN( "configuration loaded:" );
+    DEBUG_PRINTLN( cfg.version );
+
+    
+    RPM = cfg.RPM;
+    return true;
+
+  }
+  return false;
+
+}
+
+
+
+void saveConfig() {
+  for ( int i = 0; i < sizeof( cfg ); i++ )
+    EEPROM.write( config_start + i, *(( char* )&cfg + i ));
+    DEBUG_PRINTLN( "configuration saved" );
+}
+
+
 
 void setup() {
   
@@ -64,6 +112,10 @@ void setup() {
   colon_ms = millis();
   himillis = 0;
   RPM=20;
+  if ( !loadConfig() ) {                                              // checking and loading configuration
+    DEBUG_PRINTLN( "configuration not loaded!" );
+    saveConfig();                                                     // default values if no config
+  }
 
 }
 
@@ -183,6 +235,15 @@ void buttonCheck() {
             value = encoder -> getValue();
             lastValue = value;   											// set last encoder value
        break;                
+  case ClickEncoder::DoubleClicked:                             // save config if rotary encoder button double clicked
+         DEBUG_PRINTLN( "ClickEncoder::DoubleClicked" );
+          if ( off  ) {
+            
+            cfg.RPM = RPM;
+            saveConfig();
+           
+          }
+       break;
       } 
   }
 }
